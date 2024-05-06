@@ -204,12 +204,12 @@ public class DwdBaseLogCopy extends BaseApp {
         SideOutputDataStream<String> actionDS = pageDS.getSideOutput(actionTag);
         SideOutputDataStream<String> appVideoDS = pageDS.getSideOutput(appVideoTag);
 
-        // pageDS.print("页面：");
-        // errDS.print("err:");
-        // startDS.print("start:");
-        // displayDS.print("display:");
-        // actionDS.print("action:");
-        // appVideoDS.print("appVideo:");
+        pageDS.print("页面：");
+        errDS.print("err:");
+        startDS.print("start:");
+        displayDS.print("display:");
+        actionDS.print("action:");
+        appVideoDS.print("appVideo:");
 
         /*
         页面：:4> {"common":{"sc":"1","ar":"28","uid":"41","os":"Android 11.0","ch":"wandoujia","is_new":"0","md":"Xiaomi 10 Pro ","mid":"mid_34","vc":"v2.1.134","ba":"Xiaomi","sid":"9b7b0028-f8c0-4fb1-8ecd-f3c46e7f6fda"},"page":{"page_id":"order","item":"19915","during_time":13682,"item_type":"order_id","last_page_id":"course_detail"},"ts":1714996398469}

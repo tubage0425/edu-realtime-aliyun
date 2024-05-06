@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>realtime-dwd-base-log</module>
+        <module>realtime-dwd-user-userLogin</module>
+        <module>realtime-dwd-trade-order-detail</module>
     </modules>
 
     <dependencies>
