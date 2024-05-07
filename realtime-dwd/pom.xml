@@ -15,6 +15,7 @@
         <module>realtime-dwd-base-log</module>
         <module>realtime-dwd-user-userLogin</module>
         <module>realtime-dwd-trade-order-detail</module>
+        <module>realtime-dwd-trade-order-pay-suc-detail</module>
     </modules>
 
     <dependencies>
