@@ -54,17 +54,15 @@ public class Constant {
     public static final String TOPIC_DWD_TRAFFIC_DISPLAY = "dwd_traffic_display";
     public static final String TOPIC_DWD_TRAFFIC_APPVIDEO = "dwd_traffic_appVideo";
 
-    public static final String TOPIC_DWD_TRADE_CART_ADD = "dwd_trade_cart_add";
     public static final String TOPIC_DWD_TRADE_ORDER_DETAIL = "dwd_trade_order_detail";
     public static final String TOPIC_DWD_TRADE_ORDER_PAYMENT_SUCCESS = "dwd_trade_order_payment_success";
 
-    public static final String TOPIC_DWD_INTERACTION_COURSE_COMMENT_INFO = "dwd_interaction_course_comment_info";
-
-    // public static final String TOPIC_DWD_TRADE_ORDER_CANCEL = "dwd_trade_order_cancel_detail";
-    // public static final String TOPIC_DWD_TRADE_ORDER_REFUND = "dwd_trade_order_refund";
-    // public static final String TOPIC_DWD_TRADE_REFUND_PAYMENT_SUCCESS = "dwd_trade_refund_payment_success";
-
     public static final String TOPIC_DWD_USER_REGISTER = "dwd_user_register";
     public static final String TOPIC_DWD_USER_LOGIN = "dwd_user_login";
+
+    public static final String KEYWORD_SEARCH="SEARCH";
+    public static final String KEYWORD_CLICK="CLICK";
+    public static final String KEYWORD_CART="CART";
+    public static final String KEYWORD_ORDER="ORDER";
 
 }

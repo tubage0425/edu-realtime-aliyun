@@ -4,12 +4,25 @@ import com.atguigu.edu.realtime.common.constant.Constant;
 import com.ververica.cdc.connectors.mysql.source.MySqlSource;
 import com.ververica.cdc.connectors.mysql.table.StartupOptions;
 import com.ververica.cdc.debezium.JsonDebeziumDeserializationSchema;
+import org.apache.doris.flink.cfg.DorisExecutionOptions;
+import org.apache.doris.flink.cfg.DorisOptions;
+import org.apache.doris.flink.cfg.DorisReadOptions;
+import org.apache.doris.flink.sink.DorisSink;
+import org.apache.doris.flink.sink.writer.serializer.SimpleStringSerializer;
 import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
+import org.apache.flink.connector.jdbc.JdbcConnectionOptions;
+import org.apache.flink.connector.jdbc.JdbcExecutionOptions;
+import org.apache.flink.connector.jdbc.JdbcSink;
+import org.apache.flink.connector.jdbc.JdbcStatementBuilder;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -55,7 +68,7 @@ public class FlinkSourceUtil {
         return kafkaSource;
     }
 
-    // flink cdc mysqlSource
+    // flink cdc mysqlSource(dim dwd)
     public static MySqlSource<String> getMysqlSource(String dbName, String ... tableName){
         Properties props = new Properties();
         props.setProperty("useSSL", "false");
@@ -74,4 +87,7 @@ public class FlinkSourceUtil {
 
         return mysqlSource;
     }
+
+
+
 }

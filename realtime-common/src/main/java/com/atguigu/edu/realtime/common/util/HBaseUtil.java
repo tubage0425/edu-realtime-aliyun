@@ -124,7 +124,7 @@ public class HBaseUtil {
         }
     }
 
-    // 根据rowkey查数据
+    // 根据rowkey查数据（dws关联维度宽表）
     public static <T> T getRow(Connection hbaseConn,
                                String nameSpace,
                                String tableName,
@@ -168,10 +168,63 @@ public class HBaseUtil {
     }
 
 
+    // TODO dws 优化 异步IO 连接
+    public static AsyncConnection getHbaseConnectionAsync() {
+        try {
+            Configuration conf = new Configuration();
+            conf.set("hbase.zookeeper.quorum", Constant.ZK_BROKERS);
+            AsyncConnection asyncConnection = ConnectionFactory.createAsyncConnection(conf).get();
+            return asyncConnection;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public static void closeHbaseConnectionAsync(AsyncConnection asyncHbaseConn) throws IOException {
+        if(asyncHbaseConn != null || !asyncHbaseConn.isClosed()) {
+            asyncHbaseConn.close();
+        }
+    }
+
+    // TODO DWS 异步优化 get查询 根据rowkey查数据
+    public static JSONObject getRowAsync(AsyncConnection asyncHbaseConn,
+                                         String nameSpace,
+                                         String tableName,
+                                         String rowKey) {
+        TableName tableNameObj = TableName.valueOf(nameSpace, tableName);
+        AsyncTable<AdvancedScanResultConsumer> asyncTable = asyncHbaseConn.getTable(tableNameObj); // Table不用自己关闭
+
+        Get get = new Get(Bytes.toBytes(rowKey));
+        try {
+            Result result = asyncTable.get(get).get();
+
+            List<Cell> cells = result.listCells();
+            if(cells != null && cells.size() > 0) {
+                JSONObject jsonObject = new JSONObject();
+                for (Cell cell : cells) {
+                    String columnName = Bytes.toString(CellUtil.cloneQualifier(cell));
+                    String columnValue = Bytes.toString(CellUtil.cloneValue(cell));
+                    jsonObject.put(columnName,columnValue);
+                }
+                return jsonObject;
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+
+    }
+
+
+
+
 
     // TODO 测试HBASE
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Connection hbaseConnection = getHbaseConnection();
         System.out.println("hbaseConnection = " + hbaseConnection);
+
+        closeHbaseConnection(hbaseConnection);
     }
 }
