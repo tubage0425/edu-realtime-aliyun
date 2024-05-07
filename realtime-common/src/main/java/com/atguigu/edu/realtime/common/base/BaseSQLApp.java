@@ -1,6 +1,7 @@
 package com.atguigu.edu.realtime.common.base;
 
 import com.atguigu.edu.realtime.common.constant.Constant;
+import com.atguigu.edu.realtime.common.util.SQLUtil;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.configuration.RestOptions;
@@ -44,4 +45,21 @@ public abstract class BaseSQLApp {
     }
 
     protected abstract void handle(StreamExecutionEnvironment env, StreamTableEnvironment tableEnv);
+
+    public static void readOdsDb(StreamTableEnvironment tableEnv, String groupId) {
+        tableEnv.executeSql("CREATE TABLE topic_db (\n" +
+                "`database`  string,\n" +
+                "`table`     string,\n" +
+                "`type`      string,\n" +
+                "`data`      MAP<string,string>,\n" +
+                "`old`       MAP<string,string>,\n" +
+                " ts         bigint,\n" +
+                " pt as proctime(),\n" +
+                " et as TO_TIMESTAMP_LTZ(ts,0),\n" +
+                " WATERMARK FOR et AS et\n" +
+                ") " + SQLUtil.getKafkaDDL(Constant.TOPIC_DB, groupId)
+        ); // map类型 增加事件时间 处理时间字段 watermark kafka一些配置
+        // tableEnv.executeSql("select * from topic_db")
+        //         .print();
+    }
 }
