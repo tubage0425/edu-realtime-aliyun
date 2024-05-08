@@ -10,42 +10,42 @@ package com.atguigu.edu.realtime.common.constant;
  * @Version: 1.0
  */
 public class Constant {
-    // public static final String CHECKPOINT_PATH  = "hdfs://hadoop102:8020/checkPoint/edu_realtime";
-    public static final String CHECKPOINT_PATH  = "hdfs://localhost:18020/checkPoint/edu_realtime/";
-    // public static final String KAFKA_BROKERS = "hadoop102:9092,hadoop103:9092,hadoop104:9092";
-    public static final String KAFKA_BROKERS = "localhost:9092,localhost:9093,localhost:9094";
-    // public static final String ZK_BROKERS = "hadoop102,hadoop103,hadoop104:2181";
-    public static final String ZK_BROKERS = "localhost:2181";
+    public static final String CHECKPOINT_PATH  = "hdfs://hadoop102:8020/checkPoint/edu_realtime/";
+    // public static final String CHECKPOINT_PATH  = "hdfs://localhost:18020/checkPoint/edu_realtime/";
+    public static final String KAFKA_BROKERS = "hadoop102:9092,hadoop103:9092,hadoop104:9092";
+    // public static final String KAFKA_BROKERS = "localhost:9092,localhost:9093,localhost:9094";
+    public static final String ZK_BROKERS = "hadoop102,hadoop103,hadoop104:2181";
+    // public static final String ZK_BROKERS = "localhost:2181";
 
     public static final String DORIS_FE_NODES = "hadoop102:7030,hadoop103:7030,hadoop104:7030";
-    // public static final String DORIS_JDBC_URL = "jdbc:mysql://hadoop102:9030/"+Constant.DORIS_DATABASE+"?useUnicode=true&characterEncoding=UTF-8";
-    public static final String DORIS_JDBC_URL = "jdbc:mysql://localhost:19030/"+Constant.DORIS_DATABASE+"?useUnicode=true&characterEncoding=UTF-8";
+    public static final String DORIS_JDBC_URL = "jdbc:mysql://hadoop102:9030/"+Constant.DORIS_DATABASE+"?useUnicode=true&characterEncoding=UTF-8";
+    // public static final String DORIS_JDBC_URL = "jdbc:mysql://localhost:19030/"+Constant.DORIS_DATABASE+"?useUnicode=true&characterEncoding=UTF-8";
     public static final String DORIS_USER = "root";
     public static final String DORIS_PASSWORD = "aaaaaa";
     public static final String DORIS_DATABASE = "edu_realtime";
-    // public static final String JEDIS_HOST = "hadoop102";
-    public static final String JEDIS_HOST = "localhost";
-    // public static final int JEDIS_PORT = 6379;
-    public static final int JEDIS_PORT = 16379;
-    // public static final String REDIS_URL = "redis://hadoop102:6379/0";
-    public static final String REDIS_URL = "redis://localhost:16379/0";
+    public static final String JEDIS_HOST = "hadoop102";
+    // public static final String JEDIS_HOST = "localhost";
+    public static final int JEDIS_PORT = 6379;
+    // public static final int JEDIS_PORT = 16379;
+    public static final String REDIS_URL = "redis://hadoop102:6379/0";
+    // public static final String REDIS_URL = "redis://localhost:16379/0";
 
     public static final String HADOOP_USER_NAME = "china";
 
     public static final String TOPIC_DB = "topic_db";
     public static final String TOPIC_LOG = "topic_log";
 
-    // public static final String MYSQL_HOST = "hadoop102";
-    public static final String MYSQL_HOST = "localhost";
-    // public static final int MYSQL_PORT = 3306;
-    public static final int MYSQL_PORT = 13306;
+    public static final String MYSQL_HOST = "hadoop102";
+    // public static final String MYSQL_HOST = "localhost";
+    public static final int MYSQL_PORT = 3306;
+    // public static final int MYSQL_PORT = 13306;
     public static final String MYSQL_USER_NAME = "root";
     public static final String MYSQL_PASSWORD = "123456";
     public static final String HBASE_NAMESPACE = "edu";
 
     public static final String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String MYSQL_URL = "jdbc:mysql://localhost:13306?useSSL=false";
-    // public static final String MYSQL_URL = "jdbc:mysql://hadoop102:3306?useSSL=false";
+    // public static final String MYSQL_URL = "jdbc:mysql://localhost:13306?useSSL=false";
+    public static final String MYSQL_URL = "jdbc:mysql://hadoop102:3306?useSSL=false";
 
     public static final String TOPIC_DWD_TRAFFIC_START = "dwd_traffic_start";
     public static final String TOPIC_DWD_TRAFFIC_ERR = "dwd_traffic_err";
