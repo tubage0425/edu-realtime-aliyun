@@ -1,6 +1,7 @@
 package com.atguigu.edu.service;
 
 import com.atguigu.edu.beans.TradeProvinceOrderBean;
+import com.atguigu.edu.beans.TradeSubAmtBean;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,4 +19,5 @@ public interface TradeOrderService {
     BigDecimal getGMV(Integer date);
 
     List<TradeProvinceOrderBean> getByProvince(Integer date);
+    List<TradeSubAmtBean> getSubjectAmt(Integer date);
 }

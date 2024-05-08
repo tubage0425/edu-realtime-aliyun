@@ -80,7 +80,7 @@ public class DwdUserUserLogin extends BaseApp {
                 new KeySelector<JSONObject, String>() {
                     @Override
                     public String getKey(JSONObject jsonObject) throws Exception {
-                        return jsonObject.getJSONObject("common").getString("sid");
+                        return jsonObject.getJSONObject("common").getString("mid");
                     }
                 }
         );

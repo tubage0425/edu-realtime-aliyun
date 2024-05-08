@@ -1,6 +1,7 @@
 package com.atguigu.edu.mapper;
 
 import com.atguigu.edu.beans.TradeProvinceOrderBean;
+import com.atguigu.edu.beans.TradeSubAmtBean;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -30,4 +31,12 @@ public interface TradeOrderMapper {
             "    from dws_trade_province_order_window partition par#{date}\n" +
             "group by province_id,province_name")
     List<TradeProvinceOrderBean> selectByProvince(Integer date);
+
+    // 各科目销售额占比
+    @Select("select\n" +
+            "    subject_name name,\n" +
+            "    sum(order_total_amount) value\n" +
+            "    from dws_trade_course_order_window partition par#{date}\n" +
+            "group by subject_id,subject_name")
+    List<TradeSubAmtBean> selectSubjectAmt(Integer date);
 }

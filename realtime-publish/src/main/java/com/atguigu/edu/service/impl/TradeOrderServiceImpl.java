@@ -1,6 +1,7 @@
 package com.atguigu.edu.service.impl;
 
 import com.atguigu.edu.beans.TradeProvinceOrderBean;
+import com.atguigu.edu.beans.TradeSubAmtBean;
 import com.atguigu.edu.mapper.TradeOrderMapper;
 import com.atguigu.edu.service.TradeOrderService;
 import lombok.AllArgsConstructor;
@@ -31,5 +32,10 @@ public class TradeOrderServiceImpl implements TradeOrderService {
     @Override
     public List<TradeProvinceOrderBean> getByProvince(Integer date) {
         return tradeOrderMapper.selectByProvince(date);
+    }
+
+    @Override
+    public List<TradeSubAmtBean> getSubjectAmt(Integer date) {
+        return tradeOrderMapper.selectSubjectAmt(date);
     }
 }

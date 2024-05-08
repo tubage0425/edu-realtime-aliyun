@@ -25,6 +25,7 @@ public class DwsInteractionCourseReviewWindowBean {
 
     // 窗口结束时间
     String edt;
+    String curDate;
 
     // 课程 ID
     String courseId;

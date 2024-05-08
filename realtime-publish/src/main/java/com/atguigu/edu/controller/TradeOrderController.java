@@ -3,6 +3,7 @@ package com.atguigu.edu.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.atguigu.edu.beans.TradeProvinceOrderBean;
 import com.atguigu.edu.beans.TradeProvinceOrderSugarBean;
+import com.atguigu.edu.beans.TradeSubAmtBean;
 import com.atguigu.edu.service.TradeOrderService;
 import com.atguigu.edu.utils.ReturnJsonObj;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +51,26 @@ public class TradeOrderController {
         return ResponseEntity.ok(result);
     }
 
+    @RequestMapping( "/percent")
+    public ResponseEntity<Object> getPercent(@RequestParam(value = "date", defaultValue = "0") Integer date) {
+        if(date == 0) {
+            String yyyyMMdd = DateFormatUtils.format(new Date(), "yyyyMMdd");
+            date = Integer.valueOf(yyyyMMdd);
+        }
+        BigDecimal gmv = tradeOrderService.getGMV(date);
+        BigDecimal target = BigDecimal.valueOf(200000);
+
+        if (gmv == null) {
+            ReturnJsonObj result = new ReturnJsonObj(404, "No data available for the specified date.", null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        }
+
+        BigDecimal percent = gmv.divide(target);
+
+        ReturnJsonObj result = new ReturnJsonObj(0, "success", percent.multiply(BigDecimal.valueOf(100)));
+        return ResponseEntity.ok(result);
+    }
+
     @RequestMapping("/orderByProvince")
     public ResponseEntity<Object> getOrderByProvince(@RequestParam(value = "date", defaultValue = "0") Integer date) {
         if(date == 0) {
@@ -66,6 +88,24 @@ public class TradeOrderController {
         dataObj.setMapData(provinceOrderBeanList);
 
         ReturnJsonObj result = new ReturnJsonObj(0, "", dataObj);
+        return ResponseEntity.ok(result);
+    }
+
+    @RequestMapping( "/subjectAmt")
+    public ResponseEntity<Object> getSubjectAmt(@RequestParam(value = "date", defaultValue = "0") Integer date) {
+        if(date == 0) {
+            String yyyyMMdd = DateFormatUtils.format(new Date(), "yyyyMMdd");
+            date = Integer.valueOf(yyyyMMdd);
+        }
+        List<TradeSubAmtBean> subjectAmtList = tradeOrderService.getSubjectAmt(date);
+
+        if (subjectAmtList == null || subjectAmtList.size() < 1) {
+            ReturnJsonObj result = new ReturnJsonObj(404, "No data available for the specified date.", null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        }
+
+
+        ReturnJsonObj result = new ReturnJsonObj(0, "success", subjectAmtList);
         return ResponseEntity.ok(result);
     }
 
