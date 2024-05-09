@@ -3,7 +3,6 @@ package com.atguigu.gmall.realtime.dwd.db.app;
 import com.atguigu.edu.realtime.common.base.BaseSQLApp;
 import com.atguigu.edu.realtime.common.constant.Constant;
 import com.atguigu.edu.realtime.common.util.SQLUtil;
-import com.sun.tools.internal.jxc.ap.Const;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
